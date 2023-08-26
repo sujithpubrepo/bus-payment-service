@@ -10,7 +10,7 @@
     </parent>
     <groupId>com.admin</groupId>
     <artifactId>bus-admin-service</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.0.0</version>
     <name>bus-admin-service</name>
     <description>bus-admin-service</description>
     <properties>
@@ -18,6 +18,16 @@
         <spring-cloud.version>2021.0.8</spring-cloud.version>
     </properties>
     <dependencies>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-oauth2-resource-server</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
