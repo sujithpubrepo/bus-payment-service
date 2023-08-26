@@ -8,11 +8,11 @@
         <version>2.7.15</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>com.admin</groupId>
-    <artifactId>bus-admin-service</artifactId>
+    <groupId>com.inventory</groupId>
+    <artifactId>bus-inventory-service</artifactId>
     <version>1.0.0</version>
-    <name>bus-admin-service</name>
-    <description>bus-admin-service</description>
+    <name>bus-inventory-service</name>
+    <description>bus-inventory-service</description>
     <properties>
         <java.version>11</java.version>
         <spring-cloud.version>2021.0.8</spring-cloud.version>
