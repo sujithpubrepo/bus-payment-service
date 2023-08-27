@@ -30,4 +30,7 @@ public class Inventory {
     @Column(name = "lastupdated", nullable = false)
     private LocalDate lastupdated;
 
+    @Column(name = "price", nullable = false)
+    private Double price;
+
 }

@@ -33,7 +33,7 @@ public class InventoryService {
             inventory.setLastupdated(LocalDate.now());
             inventory.setDate(inventorySearch.getDate());
             inventory.setInventoryid(inventoryId);
-
+            inventory.setPrice(route.getPrice());
             inventoryRepository.save(inventory);
         }
         return inventory;
