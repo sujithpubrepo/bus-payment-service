@@ -16,7 +16,11 @@ public class PaymentService {
 
   
     public void makePayment(BookingDetails bookingDetails) {
-        PaymentStatus paymentStatus = userService.updateUserWallet();
+        WalletTransaction walletTransaction = new WalletTransaction();
+        walletTransaction.setUserid(bookingDetails.getUserid());
+        walletTransaction.setAmount(bookingDetails.getAmount());
+        walletTransaction.setAdminid("admin");
+        PaymentStatus paymentStatus = userService.updateUserWallet(walletTransaction);
 
         Payment payment = new Payment();
         String paymentid ="PMT"+(int)(Math.random()*100000);
