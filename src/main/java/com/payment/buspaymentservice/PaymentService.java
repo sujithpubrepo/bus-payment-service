@@ -15,25 +15,28 @@ public class PaymentService {
     private UserService userService;
 
   
-    public void makePayment(Booking booking) {
-        User user = userService.updateUserWallet();
+    public void makePayment(BookingDetails bookingDetails) {
+        PaymentStatus paymentStatus = userService.updateUserWallet();
 
-        if(user !=null){
-            Payment payment = new Payment();
-            String paymentid ="PMT"+(int)(Math.random()*100000);
-            payment.setPaymentid(paymentid);
-            payment.setAmount(booking.getAmount());
-            payment.setBookingid(booking.getBookingid());
-            payment.setBookingtype(booking.getBookingtype());
-            payment.setDescription(booking.getDescription());
-            payment.setTransationtype(booking.getTransationtype());
-            payment.setUserid(booking.getUserid());
-            payment.setDateofpayment(ZonedDateTime.now().toInstant());
-
-            paymentRepository.save(payment);
-            booking.setPaymentid(paymentid);
-        }
-
+        Payment payment = new Payment();
+        String paymentid ="PMT"+(int)(Math.random()*100000);
+        payment.setPaymentid(paymentid);
+        payment.setAmount(bookingDetails.getAmount());
+        payment.setBookingid(bookingDetails.getBookingid());
+        payment.setBookingtype(bookingDetails.getBookingtype());
+        payment.setDescription(bookingDetails.getDescription());
+        payment.setUserid(bookingDetails.getUserid());
+        payment.setDateofpayment(ZonedDateTime.now().toInstant());
+        payment.setStatus(paymentStatus.getStatus());
+        payment.setReason(paymentStatus.getReason());
+        paymentRepository.save(payment);
+        bookingDetails.setPaymentid(paymentid);
+        String status = "INVENTORY_FAILURE".equals(bookingDetails.getStatus()) ? "PAYMENT_REVERT":paymentStatus.getStatus();
+        bookingDetails.setStatus(status);
+        bookingDetails.setReason(paymentStatus.getReason());
     }
 
+    public Payment getPayment(String paymentid){
+       return paymentRepository.findByPaymentid(paymentid);
+    }
 }

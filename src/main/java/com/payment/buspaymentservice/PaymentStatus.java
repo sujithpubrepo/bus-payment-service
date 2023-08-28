@@ -5,5 +5,8 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class User {
+public class PaymentStatus {
+
+    private String status;
+    private String reason;
 }

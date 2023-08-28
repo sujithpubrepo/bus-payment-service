@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserService {
 
-    public User updateUserWallet(){
+    public PaymentStatus updateUserWallet(){
         return null;
     }
 }

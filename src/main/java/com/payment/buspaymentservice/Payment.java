@@ -33,10 +33,13 @@ public class Payment {
     @Column(name = "userid", nullable = false, length = 20)
     private String userid;
 
-    @Column(name = "transationtype", nullable = false, length = 10)
-    private String transationtype;
-
     @Column(name = "description", length = 20)
     private String description;
+
+    @Column(name = "status", nullable = false, length = 20)
+    private String status;
+
+    @Column(name = "reason", length = 20)
+    private String reason;
 
 }

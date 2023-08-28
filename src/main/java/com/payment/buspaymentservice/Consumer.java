@@ -26,9 +26,10 @@ public class Consumer {
         logger.info("Consuming event");
         ObjectMapper mapper  = new ObjectMapper();
 
-        Booking booking =  mapper.readValue(message, Booking.class);
-        paymentService.makePayment(booking);
-        producer.sendPaymentData(booking);
+        BookingDetails bookingDetails =  mapper.readValue(message, BookingDetails.class);
+
+        paymentService.makePayment(bookingDetails);
+        producer.sendPaymentData(bookingDetails);
 
     }
 }
