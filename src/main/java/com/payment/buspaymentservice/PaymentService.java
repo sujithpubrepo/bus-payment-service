@@ -11,17 +11,9 @@ public class PaymentService {
     @Autowired
     private PaymentRepository paymentRepository;
 
-    @Autowired
-    private UserService userService;
-
   
     public void makePayment(BookingDetails bookingDetails) {
-        WalletTransaction walletTransaction = new WalletTransaction();
-        walletTransaction.setUserid(bookingDetails.getUserid());
-        walletTransaction.setAmount(bookingDetails.getAmount());
-        walletTransaction.setAdminid("admin");
-        PaymentStatus paymentStatus = userService.updateUserWallet(walletTransaction);
-
+      
         Payment payment = new Payment();
         String paymentid ="PMT"+(int)(Math.random()*100000);
         payment.setPaymentid(paymentid);
@@ -31,13 +23,13 @@ public class PaymentService {
         payment.setDescription(bookingDetails.getDescription());
         payment.setUserid(bookingDetails.getUserid());
         payment.setDateofpayment(ZonedDateTime.now().toInstant());
-        payment.setStatus(paymentStatus.getStatus());
-        payment.setReason(paymentStatus.getReason());
+        payment.setStatus("PAYMENT_SUCCESS");
+      
         paymentRepository.save(payment);
         bookingDetails.setPaymentid(paymentid);
-        String status = "INVENTORY_FAILURE".equals(bookingDetails.getStatus()) ? "PAYMENT_REVERT":paymentStatus.getStatus();
-        bookingDetails.setStatus(status);
-        bookingDetails.setReason(paymentStatus.getReason());
+     
+        bookingDetails.setStatus("PAYMENT_SUCCESS");
+       
     }
 
     public Payment getPayment(String paymentid){
