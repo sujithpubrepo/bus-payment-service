@@ -32,7 +32,7 @@ public class PaymentService {
         payment.setDateofpayment(ZonedDateTime.now().toInstant());
         payment.setStatus(paymentStatus.getStatus());
         payment.setReason(paymentStatus.getReason());
-        paymentRepository.save(payment);
+        paymentRepository.save(payment); //
         bookingDetails.setPaymentid(paymentid);
 
         String status = "INVENTORY_FAILURE".equals(bookingDetails.getStatus()) ? "PAYMENT_REVERT":paymentStatus.getStatus();
